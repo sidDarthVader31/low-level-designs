@@ -12,7 +12,6 @@ export default class Ride {
   public rideAmount: number;
   public rideStatus: RIDESTATUS;
   public noOfRiders: number;
-
   constructor(id: number, origin: number, destination: number, noofSeats: number){
     this.id = id;
     this.origin = origin;
@@ -20,8 +19,27 @@ export default class Ride {
     this.noOfRiders = noofSeats;
     this.rideStatus = RIDESTATUS.SCHEDULED;
   }
-  public calculateRide(): number {
-    return  (this.destination - this.origin) * this.noOfRiders * (this.noOfRiders >=2 ? 0.75: 1) * RIDE_AMOUNT;
-    
+
+  public closeRide(isPreferredRider: boolean): number {
+     this.rideStatus = RIDESTATUS.COMPLETED;
+    return this.calculateRide(isPreferredRider);
+  }
+  private calculateRide(isPreferredRider: boolean): number {
+    const multiplier = this.getMultiplier(isPreferredRider);
+    return  (this.destination - this.origin) * this.noOfRiders * multiplier* RIDE_AMOUNT;
+  }
+  private getMultiplier(isPreferredRider: boolean) : number {
+    if(this.noOfRiders >=2 && isPreferredRider){
+      return 0.5;
+    }
+    else if(isPreferredRider){
+      return 0.75;
+    }
+    else if(this.noOfRiders >=2){
+      return 0.75;
+    }
+    else{
+      return 1;
+    }
   }
 }
