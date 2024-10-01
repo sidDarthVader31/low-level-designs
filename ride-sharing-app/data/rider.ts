@@ -13,9 +13,10 @@ export default class Rider {
     this.rides = [];
   }
 
-  public createRide(origin: number, destination: number, noofRiders: number): void {
+  public createRide(origin: number, destination: number, noofRiders: number): number {
     let ride = new Ride(Math.random(), origin, destination, noofRiders);
     this.rides.push(ride);
+    return ride.id;
   }
 
   public closeRide(id: number): number {
@@ -23,6 +24,9 @@ export default class Rider {
     let ride =  this.rides.filter((ride) =>{
       return ride.id === id;
     });
+    if(ride.length == 0){
+      throw new Error('Invalid ride');
+    }
     return ride[0].closeRide(this.rides.length - this.withdrawnRides >10);
   }
 }

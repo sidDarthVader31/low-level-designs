@@ -1,4 +1,5 @@
 import Ride from "./data/ride"
+import Rider from "./data/rider"
 
 
 
@@ -6,14 +7,15 @@ import Ride from "./data/ride"
 const execute = () =>{ 
   //test case 1 
   // 50, 60, 1 
-  //
-  let ride = new Ride(1, 50,60,1);
-  console.log(`amonut for ride1:`, ride.calculateRide());
 
+  //create rider 
+  let rider1 = new Rider('Siddharth');
+  let ride1 =  rider1.createRide(50,60,1);
+  const fare = rider1.closeRide(ride1);
+  console.log(`rides of rider 1:`, rider1.rides)
+  console.log(`rider 1 fare:`, fare);
   //test case 2 
   // 50 , 60 , 2
-  let ride2 = new Ride(2,50,60,2);
-  console.log(`amount for ride 2:`, ride2.calculateRide())
 }
 
 
