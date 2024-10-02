@@ -58,6 +58,9 @@ func (rider *Rider) CloseRide(id int) (float32, error) {
   if(err != nil){
     return 0.0, err
   }
+  if returnedRide.RideStatus != SCHEDULED {
+    return 0.0, errors.New("Invalid ride to close")
+  }
   returnedRide.RideStatus = COMPLETED
   rider.IsRiderAvailable = true
   return  returnedRide.CloseRide(len(rider.Rides) - rider.withdrawnRides >10), nil
