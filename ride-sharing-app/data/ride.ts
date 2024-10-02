@@ -2,7 +2,8 @@
 export enum RIDESTATUS {
   SCHEDULED = 'SCHEDULED',
   COMPLETED = 'COMPLETED',
-  CANCELLED = 'CANCELLED'
+  CANCELLED = 'CANCELLED',
+  WITHDRAWN = 'WITHDRAWN'
 }
 const RIDE_AMOUNT = 20;
 export default class Ride {
