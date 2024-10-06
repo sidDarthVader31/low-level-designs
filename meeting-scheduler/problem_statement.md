@@ -5,11 +5,8 @@ the name of the booked**
 
 ## Goals of the System 
 
-- Book a room for the meeting and return the name of the room
-booked 
+- Book a room for the meeting and return the name of the room booked 
 - History of the meeting booked 
 
 
-Write an API which accepts a start time and an end time,
-and returns the meeting room name for the booked scheduled
-time
+### Write an API which accepts a start time and an end time, and returns the meeting room name for the booked scheduled time
