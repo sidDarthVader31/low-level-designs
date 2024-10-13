@@ -1,7 +1,4 @@
 package main
-
-import "errors"
-
 type Room struct{
   name string
   calendar []Meeting
@@ -9,18 +6,18 @@ type Room struct{
 
 
 
-func (room *Room) book(startTime int64, endTime int64) (string, error){
+func (room *Room) book(startTime int64, endTime int64) (bool){
   //add validation
   isValidBooking, _:= room.isValidBooking(startTime, endTime)
-  if !isValidBooking {
-    return "", errors.New("The room is not available for the scheduled time")  
+  if isValidBooking == false {
+    return false;
   }
   meeting := Meeting {
     startTime: startTime,
     endTime: endTime,
   }
   room.calendar = append(room.calendar, meeting)
-  return room.name, nil
+  return true
 }
 
 
