@@ -2,15 +2,22 @@ import { Room } from "./room";
 
 export class Scheduler {
   private readonly rooms: Room[];
-  constructor(){
-    this.rooms = [];
+  constructor(rooms : Room[]){
+    this.rooms = rooms;
   }
 
   public book(startTime: number, endTime: number): string {
-    let room = this.rooms.pop();
-    if(!room){
-      throw new Error('No rooms available')
+    for(const room of this.rooms){
+      const flag = room.book(startTime, endTime);
+      if(flag){
+        return room.name;
+      }
     }
-    return room?.book(startTime, endTime)
+    throw new Error("All rooms are currently occupied")
+  }
+
+  //additional functionality to add a new room 
+  public addRoom(room: Room): void {
+    this.rooms.push(room)
   }
 }
