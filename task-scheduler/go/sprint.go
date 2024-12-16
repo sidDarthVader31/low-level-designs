@@ -1,6 +1,9 @@
 package main
 
+import "fmt"
+
 type Sprint struct{
+  id int
   name string
   startDate int
   endDate int
@@ -21,4 +24,12 @@ func (s *Sprint) removeTask(task Task) bool{
     }
   }
   return false
+}
+
+func (s *Sprint) printDelayTasks(){
+  for _, v := range s.tasks{
+    if v.status != DONE{
+      fmt.Println("delay task:", v)
+    }
+  }
 }
