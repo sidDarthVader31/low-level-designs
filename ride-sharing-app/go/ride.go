@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type Ride struct {
   Id int
   Source int

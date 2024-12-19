@@ -1,4 +1,6 @@
 package main
+
+import "fmt"
 type TicketType string
 const (
   STORY     TicketType    = "STORY"
@@ -33,7 +35,7 @@ func (t TicketType) isValid()bool{
 type Task struct {
   id int
   name string
-  user User
+  userId string
   status TicketStatus
   subtract string
   ticketType TicketType 

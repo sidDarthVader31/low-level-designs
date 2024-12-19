@@ -13,35 +13,43 @@ type User struct{
 }
 
 
-func (u *User) createTask(name string, substract string, ticketType TicketType) Task{
+func (u *User) createTask(name string, ticketType TicketType, id int) Task{
   task := Task{
-    id: 1,
+    id: id,
     name: name,
     userId: u.id,
     status: OPEN,
-    subtract: substract,
     ticketType: ticketType,
   }
   u.tickets = append(u.tickets, task)
   return task
 }
 
+func (u *User) createSprint(id int, name string, startDate int, endDate int, tasks []Task) Sprint{
+  sprint := Sprint{
+    id:  id,
+    name: name,
+    startDate: startDate,
+    endDate: endDate,
+    tasks: tasks,
+  }
+  u.sprints = append(u.sprints, sprint)
+  return sprint
+}
 
 
 func(u *User) updateStatus(status TicketStatus, taskId int) error{
   isPresent := false
-  var task Task
-  for _,v := range u.tickets{
+  for i,v := range u.tickets{
     if v.id == taskId{
       isPresent = true
-      task = v
+      u.tickets[i].updateStatus(status)
       break;
     }
   }
   if isPresent == false{
     return errors.New("task not part of user tickets")
   }
-  task.updateStatus(status)
   return nil
 }
 
