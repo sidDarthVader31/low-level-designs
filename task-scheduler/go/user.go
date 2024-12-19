@@ -53,6 +53,15 @@ func(u *User) updateStatus(status TicketStatus, taskId int) error{
   return nil
 }
 
+func( u *User) updateSubtract(subtract string, tasId int) error{
+  for i,v := range u.tickets{
+    if v.id == tasId{
+      return  u.tickets[i].addSubtract(subtract)
+    }
+  }
+  return errors.New("ticket not found")
+}
+
 
 func( u *User) printUserTasks(){
   for _,v := range u.tickets{

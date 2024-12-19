@@ -21,6 +21,13 @@ func main(){
   fmt.Println("updating ticket status")
   dev1.updateStatus(DONE, 1)
 
+
+  fmt.Println("updating substract for story")
+  fmt.Println(dev1.updateSubtract("this is a subtract for a story", 2))
+
+  fmt.Println("updating subtracct for a negative case ")
+  fmt.Println(dev1.updateSubtract("this is subtract for a negative case", 1))
+
   fmt.Println("printing sprint details")
   dev1.sprintDetails(1)
 

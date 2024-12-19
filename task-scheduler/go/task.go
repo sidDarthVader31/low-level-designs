@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 type TicketType string
 const (
   STORY     TicketType    = "STORY"
@@ -42,12 +45,12 @@ type Task struct {
 }
 
 
-func(t *Task)addSubtract(substract string) bool{
+func(t *Task)addSubtract(substract string) error{
   if(t.ticketType != STORY){
-    return false 
+    return errors.New(fmt.Sprint("wrong ticket type for ticket: %v", t))
   }
   t.subtract = substract
-  return true
+  return nil
 }
 func(t *Task) updateStatus(status TicketStatus) bool{
   if !status.isValid(){
