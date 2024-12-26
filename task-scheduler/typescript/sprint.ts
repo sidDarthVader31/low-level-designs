@@ -8,8 +8,8 @@ export class Sprint {
   tickets: Task[]
 
 
-  constructor(id: number, name: string, endDate: number, startDate: number, tasks: Task[]){
-    this.id = id ;
+  constructor(name: string, endDate: number, startDate: number, tasks: Task[]){
+    this.id = Math.floor(Math.random() * 11);
     this.name = name;
     this.startDate = startDate;
     this.endDate = endDate;

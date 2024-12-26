@@ -1,15 +1,15 @@
 
 
 export enum TicketType {
-  STORY,
-  BUG, 
-  FEATURE
+  STORY = "STORY",
+  BUG = "BUG",
+  FEATURE = "FEATURE"
 }
 
 export enum TicketStatus {
-  OPEN,
-  CLOSED,
-  IN_PROGRESS
+  OPEN = "OPEN",
+  CLOSED ="CLOSED",
+  IN_PROGRESS= "IN_PROGRESS"
 }
 
 export class Task {
@@ -20,8 +20,8 @@ export class Task {
   ticketStatus: TicketStatus;
   subtract: string
 
-  constructor(id: number, name: string, userId: number, ticketType: TicketType, subtract: string){
-    this.id = id;
+  constructor(name: string, userId: number, ticketType: TicketType, subtract: string){
+    this.id = Math.floor(Math.random() * 11);
     this.name = name;
     this.userId = userId;
     this.ticketType = ticketType;
@@ -31,7 +31,7 @@ export class Task {
     }
   }
 
-  public updateTicket(ticketStatus: TicketStatus){
+  public updateStatus(ticketStatus: TicketStatus){
     this.ticketStatus = ticketStatus;
   }
   public updateSubtract(subtract: string) {
